@@ -10,6 +10,19 @@ import com.bobocode.util.ExerciseNotCompletedException;
  * @param <T> a generic parameter
  */
 public class LinkedQueue<T> implements Queue<T> {
+    private static class Node<T>{
+        T element;
+        Node<T> next;
+
+        private Node(T element){
+            this.element = element;
+        }
+
+    }
+
+    private Node<T> head;
+    private Node<T> tail;
+    private int size = 0;
 
     /**
      * Adds an element to the end of the queue.
@@ -17,7 +30,14 @@ public class LinkedQueue<T> implements Queue<T> {
      * @param element the element to add
      */
     public void add(T element) {
-        throw new ExerciseNotCompletedException(); // todo: implement this method
+        Node<T> newNode = new Node<>(element);
+        if(size == 0){
+            head = tail = newNode;
+        }else{
+            tail.next = newNode;
+            tail = newNode;
+        }
+        size++;
     }
 
     /**
@@ -26,7 +46,13 @@ public class LinkedQueue<T> implements Queue<T> {
      * @return an element that was retrieved from the head or null if queue is empty
      */
     public T poll() {
-        throw new ExerciseNotCompletedException(); // todo: implement this method
+        if(size == 0){
+            return null;
+        }
+        T retrieved = head.element;
+        head = head.next;
+        size--;
+        return retrieved;
     }
 
     /**
@@ -35,7 +61,7 @@ public class LinkedQueue<T> implements Queue<T> {
      * @return an integer value that is a size of queue
      */
     public int size() {
-        throw new ExerciseNotCompletedException(); // todo: implement this method
+        return size;
     }
 
     /**
@@ -44,6 +70,9 @@ public class LinkedQueue<T> implements Queue<T> {
      * @return {@code true} if the queue is empty, returns {@code false} if it's not
      */
     public boolean isEmpty() {
-        throw new ExerciseNotCompletedException(); // todo: implement this method
+        if(size == 0){
+            return true;
+        }
+        return false;
     }
 }
