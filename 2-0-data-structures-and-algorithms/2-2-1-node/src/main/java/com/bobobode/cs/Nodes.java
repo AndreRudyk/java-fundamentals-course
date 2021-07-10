@@ -74,18 +74,14 @@ public class Nodes {
      * @return a reference to the first element of the chain
      */
     public static <T> Node<T> chainOf(T... elements) {
-        Node<T> firstOne = null;
-        for(int i = 0; i < elements.length; i++){
-            if(i != elements.length-1){
-                Node<T> one = create(elements[i]);
-                Node<T> two = create(elements[i+1]);
-                link(one, two);
-                if(i == 0){
-                    firstOne = one;
-                }
-            }
+        Node<T> first = new Node<>(elements[0]);
+        Node<T>current = first;
+        for(int i = 1; i <elements.length; i++){
+           current.next = new Node<>(elements[i]);
+           current = current.next;
+
         }
-        return firstOne;
+        return first;
     }
 
     /**
@@ -98,6 +94,14 @@ public class Nodes {
      * @return a reference to the first element of the chain
      */
     public static <T> Node<T> circleOf(T... elements) {
-        throw new ExerciseNotCompletedException(); // todo:
+
+        Node<T> first = new Node<>(elements[0]);
+        Node<T>current = first;
+        for(int i = 1; i <elements.length; i++){
+                current.next = new Node<>(elements[i]);
+                current = current.next;
+        }
+        current.next = first;
+        return first;
     }
 }
