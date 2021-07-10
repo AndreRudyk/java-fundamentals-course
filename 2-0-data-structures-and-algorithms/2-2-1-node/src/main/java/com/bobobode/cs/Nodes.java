@@ -17,7 +17,7 @@ public class Nodes {
      * @return a new instance of {@link Node}
      */
     public static <T> Node<T> create(T element) {
-        throw new ExerciseNotCompletedException(); // todo:
+        return  new Node<>(element);
     }
 
     /**
@@ -28,7 +28,7 @@ public class Nodes {
      * @param <T>    a genetic type
      */
     public static <T> void link(Node<T> first, Node<T> second) {
-        throw new ExerciseNotCompletedException(); // todo:
+        first.next = second;
     }
 
     /**
@@ -41,7 +41,10 @@ public class Nodes {
      * @return a reference to a first node created based on firstElement
      */
     public static <T> Node<T> pairOf(T firstElement, T secondElement) {
-        throw new ExerciseNotCompletedException(); // todo:
+        Node<T> first = create(firstElement);
+        Node<T>second = create(secondElement);
+        link(first, second);
+        return  first;
     }
 
     /**
@@ -55,7 +58,11 @@ public class Nodes {
      * @return a reference to the first node
      */
     public static <T> Node<T> closedPairOf(T firstElement, T secondElement) {
-        throw new ExerciseNotCompletedException(); // todo:
+        Node<T> first = create(firstElement);
+        Node<T> second  = create(secondElement);
+        link(first, second);
+        link(second, first);
+        return first;
     }
 
     /**
@@ -67,7 +74,18 @@ public class Nodes {
      * @return a reference to the first element of the chain
      */
     public static <T> Node<T> chainOf(T... elements) {
-        throw new ExerciseNotCompletedException(); // todo:
+        Node<T> firstOne = null;
+        for(int i = 0; i < elements.length; i++){
+            if(i != elements.length-1){
+                Node<T> one = create(elements[i]);
+                Node<T> two = create(elements[i+1]);
+                link(one, two);
+                if(i == 0){
+                    firstOne = one;
+                }
+            }
+        }
+        return firstOne;
     }
 
     /**
