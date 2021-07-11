@@ -2,11 +2,16 @@ package com.bobocode.cs;
 
 import com.bobocode.util.ExerciseNotCompletedException;
 
+import java.util.Arrays;
+
 /**
  * {@link ArrayList} is an implementation of {@link List} interface. This resizable data structure
  * based on an array and is simplified version of {@link java.util.ArrayList}.
  */
 public class ArrayList<T> implements List<T> {
+    private Object [] array;
+    private int size;
+    final int CAPACITY = 10;
 
     /**
      * This constructor creates an instance of {@link ArrayList} with a specific capacity of an array inside.
@@ -15,7 +20,10 @@ public class ArrayList<T> implements List<T> {
      * @throws IllegalArgumentException – if the specified initial capacity is negative or 0.
      */
     public ArrayList(int initCapacity) {
-        throw new ExerciseNotCompletedException(); // todo: implement this method
+        if(initCapacity <= 0){
+            throw new IllegalArgumentException();
+        }
+        array = new Object[initCapacity];
     }
 
     /**
@@ -23,7 +31,7 @@ public class ArrayList<T> implements List<T> {
      * A default size of inner array is 5;
      */
     public ArrayList() {
-        throw new ExerciseNotCompletedException(); // todo: implement this method
+        array = new Object[CAPACITY];
     }
 
     /**
@@ -33,7 +41,8 @@ public class ArrayList<T> implements List<T> {
      * @return new instance
      */
     public static <T> List<T> of(T... elements) {
-        throw new ExerciseNotCompletedException(); // todo: implement this method
+        ArrayList list = new ArrayList();
+        Arrays.stream(list)
     }
 
     /**
@@ -43,7 +52,20 @@ public class ArrayList<T> implements List<T> {
      */
     @Override
     public void add(T element) {
-        throw new ExerciseNotCompletedException(); // todo: implement this method
+        if(size < CAPACITY){
+            for(int i = 0; i < array.length; i ++){
+                if(array[i] == null){
+                    array [i] = element;
+                    size++;
+                    break;
+                }
+            }
+        }else{
+            array = new Object[CAPACITY+1];
+            array[array.length - 1] = element;
+            size++;
+
+        }
     }
 
     /**
