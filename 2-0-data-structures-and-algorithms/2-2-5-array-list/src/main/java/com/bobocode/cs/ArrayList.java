@@ -1,7 +1,5 @@
 package com.bobocode.cs;
 
-import com.bobocode.util.ExerciseNotCompletedException;
-
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -11,9 +9,9 @@ import java.util.Objects;
  * based on an array and is simplified version of {@link java.util.ArrayList}.
  */
 public class ArrayList<T> implements List<T> {
-    private Object [] array;
+    public Object [] array;
     private int size;
-    final int CAPACITY = 10;
+    final int CAPACITY = 5;
 
     /**
      * This constructor creates an instance of {@link ArrayList} with a specific capacity of an array inside.
@@ -42,7 +40,7 @@ public class ArrayList<T> implements List<T> {
      * @param elements to add
      * @return new instance
      */
-    public static <T> List<T> of(T... elements) {
+    public static <T> ArrayList<Integer> of(T... elements) {
         ArrayList list = new ArrayList();
         list.array = Arrays.copyOf(elements, elements.length);
         list.size = elements.length;
@@ -69,8 +67,26 @@ public class ArrayList<T> implements List<T> {
      */
     @Override
     public void add(int index, T element) {
+        Objects.checkIndex(index, size + 1);
         increaseIfFull();
-        array[index] = element;
+        Object[]newArray = new Object [array.length];
+        if(index == size){
+            array[size] = element;
+        }else{
+            for(int i = 0; i < size; i++){
+                if( i != index){
+                    newArray[i] = array[i];
+                }else{
+                    newArray [i] = element;
+                    for(int j = i + 1; j < size + 1; j++){
+                        newArray[j] = array[j - 1];
+                    }
+                    break;
+                }
+            }
+            array = newArray;
+
+        }
         size++;
     }
 
@@ -142,22 +158,28 @@ public class ArrayList<T> implements List<T> {
     public T remove(int index) {
         Objects.checkIndex(index, size);
         Object removed = array[index];
-        Object[] newArray = new Object[array.length];
-
+        Object []  newOne= new Object [CAPACITY];
         for(int i = 0; i < size; i++){
             if(i != index){
-                newArray[i] = array[i];
-            }else {
-                //array[i] = array[i + 1];
-                for(int j = i + 1; j< size; j++){
-                    newArray[i] = array[j];
-                    i++;
+                newOne [i] = array [i];
+            }else{
+                if(i == size - 1){
+                   break;
                 }
+                newOne[i] = array[i + 1];
+                for(int j = i + 2; j < size; j++){
+                    newOne[j-1] = array[j];
+                }
+                array = newOne;
                 break;
             }
         }
         size--;
-        return (T) removed;
+        array = new Object [size];
+        for(int z = 0; z < size; z++){
+            array[z] =  newOne[z];
+
+        }        return (T) removed;
     }
 
     /**
