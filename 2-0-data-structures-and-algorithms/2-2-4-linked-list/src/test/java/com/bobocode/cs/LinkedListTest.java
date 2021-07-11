@@ -2,6 +2,7 @@ package com.bobocode.cs;
 
 
 import lombok.SneakyThrows;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.*;
 
 import java.lang.reflect.Constructor;
@@ -35,7 +36,7 @@ public class LinkedListTest {
 
         String name = innerClass.getSimpleName();
 
-        assertThat(name).isEqualTo("Node");
+        AssertionsForClassTypes.assertThat(name).isEqualTo("Node");
     }
 
     @Test
@@ -49,8 +50,8 @@ public class LinkedListTest {
         boolean hasNodeField = Arrays.stream(innerClass.getDeclaredFields())
                 .anyMatch(NODE_FIELD);
 
-        assertThat(hasElementField).isTrue();
-        assertThat(hasNodeField).isTrue();
+        AssertionsForClassTypes.assertThat(hasElementField).isTrue();
+        AssertionsForClassTypes.assertThat(hasNodeField).isTrue();
     }
 
     private Class<?> getInnerClass() {
@@ -67,7 +68,7 @@ public class LinkedListTest {
 
         int element = getInternalElement(0);
 
-        assertThat(element).isEqualTo(41);
+        AssertionsForClassTypes.assertThat(element).isEqualTo(41);
     }
 
     @Test
@@ -77,7 +78,7 @@ public class LinkedListTest {
 
         int size = getInternalSize();
 
-        assertThat(size).isEqualTo(1);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(1);
     }
 
     @Test
@@ -91,9 +92,9 @@ public class LinkedListTest {
         int secondElement = getInternalElement(1);
         int thirdElement = getInternalElement(2);
 
-        assertThat(firstElement).isEqualTo(41);
-        assertThat(secondElement).isEqualTo(30);
-        assertThat(thirdElement).isEqualTo(75);
+        AssertionsForClassTypes.assertThat(firstElement).isEqualTo(41);
+        AssertionsForClassTypes.assertThat(secondElement).isEqualTo(30);
+        AssertionsForClassTypes.assertThat(thirdElement).isEqualTo(75);
     }
 
     @Test
@@ -105,7 +106,7 @@ public class LinkedListTest {
 
         int size = getInternalSize();
 
-        assertThat(size).isEqualTo(3);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(3);
     }
 
     @Test
@@ -119,12 +120,12 @@ public class LinkedListTest {
         int elementByNewElementIndex = getInternalElement(newElementIdx);
         int size = getInternalSize();
 
-        assertThat(elementByNewElementIndex).isEqualTo(66);
-        assertThat(getInternalElement(0)).isEqualTo(43);
-        assertThat(getInternalElement(1)).isEqualTo(5);
-        assertThat(getInternalElement(3)).isEqualTo(6);
-        assertThat(getInternalElement(4)).isEqualTo(8);
-        assertThat(size).isEqualTo(5);
+        AssertionsForClassTypes.assertThat(elementByNewElementIndex).isEqualTo(66);
+        AssertionsForClassTypes.assertThat(getInternalElement(0)).isEqualTo(43);
+        AssertionsForClassTypes.assertThat(getInternalElement(1)).isEqualTo(5);
+        AssertionsForClassTypes.assertThat(getInternalElement(3)).isEqualTo(6);
+        AssertionsForClassTypes.assertThat(getInternalElement(4)).isEqualTo(8);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(5);
     }
 
     @Test
@@ -135,8 +136,8 @@ public class LinkedListTest {
         int element = getInternalElement(0);
         int size = getInternalSize();
 
-        assertThat(element).isEqualTo(45);
-        assertThat(size).isEqualTo(1);
+        AssertionsForClassTypes.assertThat(element).isEqualTo(45);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(1);
     }
 
     @Test
@@ -147,8 +148,8 @@ public class LinkedListTest {
         int newElementIndex = getInternalSize();
         intList.add(newElementIndex, 44);
 
-        assertThat(getInternalElement(newElementIndex)).isEqualTo(44);
-        assertThat(getInternalSize()).isEqualTo(7);
+        AssertionsForClassTypes.assertThat(getInternalElement(newElementIndex)).isEqualTo(44);
+        AssertionsForClassTypes.assertThat(getInternalSize()).isEqualTo(7);
     }
 
     @Test
@@ -162,15 +163,15 @@ public class LinkedListTest {
         int secondElement = getInternalElement(1);
         int size = getInternalSize();
 
-        assertThat(firstElement).isEqualTo(53);
-        assertThat(secondElement).isEqualTo(4);
-        assertThat(size).isEqualTo(7);
+        AssertionsForClassTypes.assertThat(firstElement).isEqualTo(53);
+        AssertionsForClassTypes.assertThat(secondElement).isEqualTo(4);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(7);
     }
 
     @Test
     @Order(11)
     void addThrowsExceptionWenIndexIsNegative() {
-        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(IndexOutOfBoundsException.class)
                 .isThrownBy(() -> intList.add(-1, 66));
     }
 
@@ -181,7 +182,7 @@ public class LinkedListTest {
 
         int newElementIdx = 5;
 
-        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(IndexOutOfBoundsException.class)
                 .isThrownBy(() -> intList.add(newElementIdx, 88));
     }
 
@@ -195,8 +196,8 @@ public class LinkedListTest {
         int element = getInternalElement(5);
         int size = getInternalSize();
 
-        assertThat(element).isEqualTo(111);
-        assertThat(size).isEqualTo(6);
+        AssertionsForClassTypes.assertThat(element).isEqualTo(111);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(6);
     }
 
     @Test
@@ -204,9 +205,9 @@ public class LinkedListTest {
     void of() {
         intList = LinkedList.of(43, 233, 54);
 
-        assertThat(getInternalElement(0)).isEqualTo(43);
-        assertThat(getInternalElement(1)).isEqualTo(233);
-        assertThat(getInternalElement(2)).isEqualTo(54);
+        AssertionsForClassTypes.assertThat(getInternalElement(0)).isEqualTo(43);
+        AssertionsForClassTypes.assertThat(getInternalElement(1)).isEqualTo(233);
+        AssertionsForClassTypes.assertThat(getInternalElement(2)).isEqualTo(54);
     }
 
     @Test
@@ -216,7 +217,7 @@ public class LinkedListTest {
 
         int size = getInternalSize();
 
-        assertThat(size).isEqualTo(3);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(3);
     }
 
     @Test
@@ -231,17 +232,17 @@ public class LinkedListTest {
         int nextElementToNewElementIndex = getInternalElement(3);
         int internalSize = getInternalSize();
 
-        assertThat(elementOnNewElementIndex).isEqualTo(99);
-        assertThat(nextElementToNewElementIndex).isEqualTo(8);
-        assertThat(getInternalElement(0)).isEqualTo(34);
-        assertThat(getInternalElement(1)).isEqualTo(78);
-        assertThat(internalSize).isEqualTo(4);
+        AssertionsForClassTypes.assertThat(elementOnNewElementIndex).isEqualTo(99);
+        AssertionsForClassTypes.assertThat(nextElementToNewElementIndex).isEqualTo(8);
+        AssertionsForClassTypes.assertThat(getInternalElement(0)).isEqualTo(34);
+        AssertionsForClassTypes.assertThat(getInternalElement(1)).isEqualTo(78);
+        AssertionsForClassTypes.assertThat(internalSize).isEqualTo(4);
     }
 
     @Test
     @Order(17)
     void setFirstElementWhenListIsEmpty() {
-        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(IndexOutOfBoundsException.class)
                 .isThrownBy(() -> intList.set(0, 34));
     }
 
@@ -250,7 +251,7 @@ public class LinkedListTest {
     void setByIndexEqualToSize() {
         addInternalElements(2, 3, 4); // size = 3
 
-        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(IndexOutOfBoundsException.class)
                 .isThrownBy(() -> intList.set(3, 222));
     }
 
@@ -263,9 +264,9 @@ public class LinkedListTest {
         int secondElement = intList.get(1);
         int thirdElement = intList.get(2);
 
-        assertThat(firstElement).isEqualTo(25);
-        assertThat(secondElement).isEqualTo(87);
-        assertThat(thirdElement).isEqualTo(45);
+        AssertionsForClassTypes.assertThat(firstElement).isEqualTo(25);
+        AssertionsForClassTypes.assertThat(secondElement).isEqualTo(87);
+        AssertionsForClassTypes.assertThat(thirdElement).isEqualTo(45);
 
     }
 
@@ -276,20 +277,20 @@ public class LinkedListTest {
 
         int element = intList.get(0);
 
-        assertThat(element).isEqualTo(25);
+        AssertionsForClassTypes.assertThat(element).isEqualTo(25);
     }
 
     @Test
     @Order(21)
     void getByZeroIndexWhenListIsEmpty() {
-        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(IndexOutOfBoundsException.class)
                 .isThrownBy(() -> intList.get(0));
     }
 
     @Test
     @Order(22)
     void getWhenIndexIsNegative() {
-        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(IndexOutOfBoundsException.class)
                 .isThrownBy(() -> intList.get(-1));
     }
 
@@ -298,7 +299,7 @@ public class LinkedListTest {
     void getWhenIndexIsEqualToListSize() {
         addInternalElements(33, 46, 25, 87, 45);
 
-        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(IndexOutOfBoundsException.class)
                 .isThrownBy(() -> intList.get(5));
     }
 
@@ -309,7 +310,7 @@ public class LinkedListTest {
 
         int firstElement = intList.getFirst();
 
-        assertThat(firstElement).isEqualTo(31);
+        AssertionsForClassTypes.assertThat(firstElement).isEqualTo(31);
     }
 
     @Test
@@ -319,20 +320,20 @@ public class LinkedListTest {
 
         int lastElement = intList.getLast();
 
-        assertThat(lastElement).isEqualTo(42);
+        AssertionsForClassTypes.assertThat(lastElement).isEqualTo(42);
     }
 
     @Test
     @Order(26)
     void getFirstWhenListIsEmpty() {
-        assertThatExceptionOfType(NoSuchElementException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(NoSuchElementException.class)
                 .isThrownBy(() -> intList.getFirst());
     }
 
     @Test
     @Order(27)
     void getLastWhenListIsEmpty() {
-        assertThatExceptionOfType(NoSuchElementException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(NoSuchElementException.class)
                 .isThrownBy(() -> intList.getLast());
     }
 
@@ -347,8 +348,8 @@ public class LinkedListTest {
 
         int replacedElement = getInternalElement(elementIndex);
 
-        assertThat(deletedElement).isEqualTo(3);
-        assertThat(replacedElement).isEqualTo(4);
+        AssertionsForClassTypes.assertThat(deletedElement).isEqualTo(3);
+        AssertionsForClassTypes.assertThat(replacedElement).isEqualTo(4);
     }
 
     @Test
@@ -361,8 +362,8 @@ public class LinkedListTest {
 
         int size = getInternalSize();
 
-        assertThat(deletedElement).isEqualTo(3);
-        assertThat(size).isEqualTo(4);
+        AssertionsForClassTypes.assertThat(deletedElement).isEqualTo(3);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(4);
     }
 
     @Test
@@ -375,9 +376,9 @@ public class LinkedListTest {
         int replacedElement = getInternalElement(0);
         int size = getInternalSize();
 
-        assertThat(deletedElement).isEqualTo(4);
-        assertThat(replacedElement).isEqualTo(6);
-        assertThat(size).isEqualTo(3);
+        AssertionsForClassTypes.assertThat(deletedElement).isEqualTo(4);
+        AssertionsForClassTypes.assertThat(replacedElement).isEqualTo(6);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(3);
     }
 
     @Test
@@ -390,15 +391,15 @@ public class LinkedListTest {
         int newLastElement = getInternalElement(getInternalSize() - 1);
         int size = getInternalSize();
 
-        assertThat(deletedElement).isEqualTo(9);
-        assertThat(newLastElement).isEqualTo(8);
-        assertThat(size).isEqualTo(3);
+        AssertionsForClassTypes.assertThat(deletedElement).isEqualTo(9);
+        AssertionsForClassTypes.assertThat(newLastElement).isEqualTo(8);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(3);
     }
 
     @Test
     @Order(32)
     void removeWhenListIsEmpty() {
-        assertThatExceptionOfType(IndexOutOfBoundsException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(IndexOutOfBoundsException.class)
                 .isThrownBy(() -> intList.remove(234));
     }
 
@@ -409,7 +410,7 @@ public class LinkedListTest {
 
         int sizeFromMethod = intList.size();
 
-        assertThat(sizeFromMethod).isEqualTo(5);
+        AssertionsForClassTypes.assertThat(sizeFromMethod).isEqualTo(5);
     }
 
     @Test
@@ -417,7 +418,7 @@ public class LinkedListTest {
     void sizeWhenListIsEmpty() {
         int size = getInternalSize();
 
-        assertThat(size).isEqualTo(0);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(0);
     }
 
     @Test
@@ -428,8 +429,8 @@ public class LinkedListTest {
         boolean containsExistingElement = intList.contains(3);
         boolean containsNotExistingElement = intList.contains(54);
 
-        assertThat(containsExistingElement).isTrue();
-        assertThat(containsNotExistingElement).isFalse();
+        AssertionsForClassTypes.assertThat(containsExistingElement).isTrue();
+        AssertionsForClassTypes.assertThat(containsNotExistingElement).isFalse();
     }
 
     @Test
@@ -437,7 +438,7 @@ public class LinkedListTest {
     void containsWhenListIsEmpty() {
         boolean contains = intList.contains(34);
 
-        assertThat(contains).isFalse();
+        AssertionsForClassTypes.assertThat(contains).isFalse();
     }
 
     @Test
@@ -447,7 +448,7 @@ public class LinkedListTest {
 
         boolean empty = intList.isEmpty();
 
-        assertThat(empty).isFalse();
+        AssertionsForClassTypes.assertThat(empty).isFalse();
     }
 
     @Test
@@ -455,7 +456,7 @@ public class LinkedListTest {
     void isEmptyWhenListIsEmpty() {
         boolean empty = intList.isEmpty();
 
-        assertThat(empty).isTrue();
+        AssertionsForClassTypes.assertThat(empty).isTrue();
     }
 
     @Test
@@ -465,7 +466,7 @@ public class LinkedListTest {
 
         int size = getInternalSize();
 
-        assertThat(size).isEqualTo(0);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(0);
     }
 
     @Test
@@ -477,7 +478,7 @@ public class LinkedListTest {
 
         int size = getInternalSize();
 
-        assertThat(size).isEqualTo(0);
+        AssertionsForClassTypes.assertThat(size).isEqualTo(0);
     }
 
     @Test
@@ -487,7 +488,7 @@ public class LinkedListTest {
 
         intList.clear();
 
-        assertThatExceptionOfType(NullPointerException.class)
+        AssertionsForClassTypes.assertThatExceptionOfType(NullPointerException.class)
                 .isThrownBy(() -> getInternalElement(0));
     }
 
